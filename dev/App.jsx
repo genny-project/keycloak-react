@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Keycloak, KeycloakStatus } from '../src';
+import { Keycloak, KeycloakStatus, KeycloakLogin } from '../src';
+import keycloak from 'keycloak-js';
 
 class App extends Component {
   render() {
@@ -11,12 +12,13 @@ class App extends Component {
     };
 
     return (
-      <Keycloak config={config}>
+      <Keycloak config={config} adapter={keycloak} defaultRedirectUri={'http://localhost:7000/'}>
         <KeycloakStatus>
           {keycloak => (
             <span>{keycloak.isLoggedIn() ? 'Logged In': 'Not Logged In'}</span>
           )}
         </KeycloakStatus>
+        <KeycloakLogin />
       </Keycloak>
     );
   }
