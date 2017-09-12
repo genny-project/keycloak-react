@@ -6,6 +6,7 @@ class Keycloak extends Component {
   static propTypes = {
     config: object.isRequired,
     onHandleLogout: func,
+    onAuthSuccess: func,
     children: any,
     defaultRedirectUri: string,
     adapter: func.isRequired,
@@ -23,13 +24,14 @@ class Keycloak extends Component {
     };
 
     /* Get the config from the props */
-    const { config, onHandleLogout, defaultRedirectUri, adapter } = props;
+    const { config, onHandleLogout, defaultRedirectUri, adapter, onAuthSuccess } = props;
 
     /* Create a new instance of Keycloak authentication */
     const keycloak = new KeycloakAuth( adapter, config );
 
     keycloak.setReadyHandler(() => {
       this.setState({ ready: true });
+      onAuthSuccess && onAuthSuccess( keycloak );
     });
 
     keycloak.init();

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { object, string, bool } from 'prop-types';
+import { string, bool, object } from 'prop-types';
 
-class KeycloakLogin extends Component {
+class KeycloakRegister extends Component {
   static contextTypes = {
     keycloak: object,
   }
@@ -25,9 +25,9 @@ class KeycloakLogin extends Component {
     /* Use the default redirect uri if one wasn't provided */
     let uri = ( redirectUri ) ? redirectUri : keycloak.getDefaultRedirectUri();
 
-    /* Log the user in */
+    /* Take the user to the registration page */
     if ( !keycloak.isLoggedIn() || force ) {
-      keycloak.login({ redirectUri: uri });
+      keycloak.register({ redirectUri: uri });
     }
   }
 
@@ -36,4 +36,4 @@ class KeycloakLogin extends Component {
   }
 }
 
-export default KeycloakLogin;
+export default KeycloakRegister;

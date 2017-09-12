@@ -47,6 +47,41 @@ class KeycloakAuth {
   login( options ) {
     this.keycloak.login( options );
   }
+
+  logout( options ) {
+    this.keycloak.logout( options );
+  }
+
+  register( options ) {
+    window.location.href = this.keycloak.createRegisterUrl( options );
+  }
+
+  getToken() {
+    return this.keycloak.token;
+  }
+
+  getRealm() {
+    return this.keycloak.realm;
+  }
+
+  getRoles() {
+    return this.keycloak.realmAccess.roles;
+  }
+
+  getRefreshToken() {
+    return this.keycloak.refreshToken;
+  }
+
+  getInfo() {
+    const { email, family_name, given_name, name, sub } = this.keycloak.tokenParsed;
+    return {
+      email,
+      family_name,
+      given_name,
+      name,
+      id: sub,
+    };
+  }
 }
 
 export default KeycloakAuth;
