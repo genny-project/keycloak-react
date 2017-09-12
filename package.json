@@ -16,7 +16,7 @@
     "auth"
   ],
   "author": "Matt Hayward <matt@matthayward.com.au> (https://matthayward.com.au)",
-  "license": "MIT",
+  "license": "Apache2.0",
   "dependencies": {
     "prop-types": "^15.5.10"
   },
