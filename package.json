@@ -17,6 +17,7 @@
   "author": "Matt Hayward <matt@matthayward.com.au> (https://matthayward.com.au)",
   "license": "MIT",
   "dependencies": {
+    "keycloak-js": "^3.3.0-cr.1",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
