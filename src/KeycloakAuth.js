@@ -73,6 +73,10 @@ class KeycloakAuth {
   }
 
   getInfo() {
+    if ( !this.keycloak.tokenParsed ) {
+      return null;
+    }
+
     const { email, family_name, given_name, name, sub } = this.keycloak.tokenParsed;
     return {
       email,
