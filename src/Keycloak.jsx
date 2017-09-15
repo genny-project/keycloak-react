@@ -10,6 +10,7 @@ class Keycloak extends Component {
     children: any,
     defaultRedirectUri: string,
     adapter: func.isRequired,
+    loadingView: func,
   };
 
   static childContextTypes = {
@@ -57,9 +58,10 @@ class Keycloak extends Component {
 
   render() {
     const { ready } = this.state;
+    const { loadingView } = this.props;
 
     if ( !ready ) {
-      return null;
+      return loadingView ? loadingView() : null;
     }
 
     return (
