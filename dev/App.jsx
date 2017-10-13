@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Keycloak, KeycloakStatus, KeycloakLogin, KeycloakLogout, KeycloakRegister, KeycloakLoggedIn, KeycloakLoggedOut } from '../src';
+//import { Keycloak, KeycloakStatus, KeycloakLogin, KeycloakLogout, KeycloakRegister, KeycloakLoggedIn, KeycloakLoggedOut, KeycloakAccount } from '../src';
 import keycloak from 'keycloak-js';
 
 class App extends Component {
