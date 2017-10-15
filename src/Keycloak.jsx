@@ -48,6 +48,7 @@ class Keycloak extends Component {
     }
 
     this.keycloak = keycloak;
+    window.keycloak = keycloak;
   }
 
   getChildContext() {

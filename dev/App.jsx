@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Keycloak, KeycloakStatus, KeycloakLogin, KeycloakLogout, KeycloakRegister, KeycloakLoggedIn, KeycloakLoggedOut } from '../src';
+import { Keycloak, KeycloakStatus, KeycloakLogin, KeycloakLogout, KeycloakRegister, KeycloakLoggedIn, KeycloakLoggedOut, KeycloakAccount } from '../src';
 //import { Keycloak, KeycloakStatus, KeycloakLogin, KeycloakLogout, KeycloakRegister, KeycloakLoggedIn, KeycloakLoggedOut, KeycloakAccount } from '../src';
 import keycloak from 'keycloak-js';
 
@@ -12,6 +12,7 @@ class App extends Component {
       loggingIn: false,
       loggingOut: false,
       registering: false,
+      loadingAccountPage: false,
     };
   }
 
@@ -21,18 +22,22 @@ class App extends Component {
 
   render() {
     const config = {
-      url: 'https://keycloak.pleasedproperty.com.au/auth',
-      realm: 'pleased',
-      clientId: 'pleased',
+      url: 'http://192.168.99.100:8180/auth',
+      realm: 'wildfly-swarm-keycloak-example',
+      clientId: 'curl',
+      credentials: {
+        secret: '056b73c1-7078-411d-80ec-87d41c55c3b4'
+      }
     };
 
-    const { registering, loggingIn, loggingOut } = this.state;
+    const { registering, loggingIn, loggingOut, loadingAccountPage } = this.state;
 
     return (
       <Keycloak config={config} adapter={keycloak} defaultRedirectUri={'http://localhost:7000/'} onAuthSuccess={this.onAuthSuccess}>
         { registering && <KeycloakRegister force /> }
         { loggingIn && <KeycloakLogin force /> }
         { loggingOut && <KeycloakLogout force /> }
+        { loadingAccountPage && <KeycloakAccount force /> }
 
         <KeycloakLoggedIn>
           <b>This only shows when you are logged in</b>
@@ -55,6 +60,8 @@ class App extends Component {
 
           <div>
             <a href='#' onClick={() => this.setState({ loggingOut: true })}>Logout</a>
+            <br />
+            <a href='#' onClick={() => this.setState({ loadingAccountPage: true })}>View Account page</a>
           </div>
 
           <KeycloakLoggedIn role="wizard">

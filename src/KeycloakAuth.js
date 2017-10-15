@@ -56,6 +56,10 @@ class KeycloakAuth {
     window.location.href = this.keycloak.createRegisterUrl( options );
   }
 
+  account( options ) {
+    this.keycloak.accountManagement( options );
+  }
+
   getToken() {
     return this.keycloak.token;
   }
