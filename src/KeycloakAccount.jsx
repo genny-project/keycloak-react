@@ -27,7 +27,7 @@ class KeycloakAccount extends Component {
     //let uri = ( redirectUri ) ? redirectUri : keycloak.getDefaultRedirectUri();
 
     /* Log the user in */
-    if ( !keycloak.isLoggedIn() || force ) {npm.org
+    if ( !keycloak.isLoggedIn() || force ) {
       
       keycloak.account();
     }
