@@ -31,7 +31,7 @@ class Keycloak extends Component {
     const keycloak = new KeycloakAuth( adapter, config );
 
     keycloak.setReadyHandler(() => {
-      this.setState({ ready: true });
+      this.state.ready = true;
       onAuthSuccess && onAuthSuccess( keycloak );
     });
 
