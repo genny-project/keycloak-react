@@ -1,6 +1,6 @@
 {
   "name": "@genny-project/keycloak-react",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A library for integrating the Keycloak authentication server with React",
   "main": "dist/index.js",
   "module": "src/index.js",

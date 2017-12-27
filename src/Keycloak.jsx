@@ -17,6 +17,11 @@ class Keycloak extends Component {
     keycloak: object,
   };
 
+  componentDidMount() {
+
+    this.isMounted = true;
+  }
+
   constructor( props ) {
     super( props );
 
@@ -31,8 +36,17 @@ class Keycloak extends Component {
     const keycloak = new KeycloakAuth( adapter, config );
 
     keycloak.setReadyHandler(() => {
-      this.state.ready = true;
-      onAuthSuccess && onAuthSuccess( keycloak );
+
+        let timer = 0;
+        if(!this.isMounted) {
+            timer = 500;
+        }
+
+        setTimeout(() => {
+            this.setState({ ready: true });
+        }, timer)
+
+        onAuthSuccess && onAuthSuccess( keycloak );
     });
 
     keycloak.init();
