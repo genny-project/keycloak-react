@@ -19,7 +19,7 @@ class Keycloak extends Component {
 
   componentDidMount() {
 
-    this.isMounted = true;
+    this._ismounted = true;
   }
 
   constructor( props ) {
@@ -38,7 +38,7 @@ class Keycloak extends Component {
     keycloak.setReadyHandler(() => {
 
         let timer = 0;
-        if(!this.isMounted) {
+        if(!this._ismounted) {
             timer = 500;
         }
 
